@@ -1,3 +1,18 @@
-<p>
-  doctor-profile works!
-</p>
+<div>
+    <h2>{{doctor.firstName}} {{doctor.lastName}}</h2>
+    <img src="{{doctor.img_url}}" alt="{{doctor.firstName}} {{doctor.lastName}}">
+    <table>
+        <tr>
+            <td>Speciality: </td>
+            <td>{{doctor.speciality}}</td>
+        </tr>
+        <tr>
+            <td>Location: </td>
+            <td>{{doctor.city}}<span *ngIf="doctor.state">, {{doctor.state}}</span>, {{doctor.country}}</td>
+        </tr>
+        <tr>
+            <td>Review: </td>
+            <td>Review</td>
+        </tr>
+    </table>
+</div>

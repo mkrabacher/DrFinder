@@ -1,3 +1,59 @@
-<p>
-  doctors-display works!
-</p>
+<div style="text-align:center">
+        <h1>Welcome to Dr. Finder</h1>
+        <h3>select one of the doctors below for more information</h3>
+</div>
+
+<div id="filters">
+    <label class="filter" for="cities">Filter by city:
+        <select name="cities" id="cities-filter" [(ngModel)]="searchParams.city">
+            <option *ngFor="let city of cities" [ngValue]="city" name="searchParams-city">{{city}}</option>
+        </select>
+    </label>
+
+    <label class="filter" for="states">Filter by state:
+        <select name="states" id="states-filter" [(ngModel)]="searchParams.state">
+            <option *ngFor="let state of states" [ngValue]="state" name="searchParams-state">{{state}}</option>
+        </select>
+    </label>
+
+    <label class="filter" for="countries">Filter by country:
+        <select name="countries" id="countries-filter" [(ngModel)]="searchParams.country">
+            <option *ngFor="let country of countries" [ngValue]="country" name="searchParams-country">{{country}}</option>
+        </select>
+    </label>
+
+    <label class="filter" for="specialities">Filter by speciality:
+        <select name="specialities" id="specialities-filter" [(ngModel)]="searchParams.speciality">
+            <option *ngFor="let speciality of specialities" [ngValue]="speciality" name="searchParams-speciality">{{speciality}}</option>
+        </select>
+    </label>
+
+    <label class="filter" for="reviews">Sort by review score:
+        <button (click)="sortAscending()" value="ascending" name="searchParams-review">Ascending</button>
+        <button (click)="sortDescending()" value="ascending" name="searchParams-review">Descending</button>
+        <button (click)="sortID()" value="ascending" name="searchParams-review">None</button>
+    </label>
+</div>
+
+<div id="doctor-table">
+
+    <table>
+        <thead>
+            <td class="thead-td">ID</td>
+            <td class="thead-td">Name</td>
+            <td class="thead-td">Location</td>
+            <td class="thead-td">Speciality</td>
+            <td class="thead-td">Review Score</td>
+        </thead>
+        <tbody>
+            <tr *ngFor="let doctor of doctors">
+                <td *ngIf="passFilter(doctor)">{{doctor.id}}</td>
+                <td *ngIf="passFilter(doctor)"><a [routerLink]="['/profile', doctor.id]" >{{doctor.firstName}} {{doctor.lastName}}</a></td>
+                <td *ngIf="passFilter(doctor)">{{doctor.city}}<span *ngIf="doctor.state">, {{doctor.state}}</span>, {{doctor.country}}</td>
+                <td *ngIf="passFilter(doctor)">{{doctor.speciality}}</td>
+                <td *ngIf="passFilter(doctor)">{{doctor.review}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
