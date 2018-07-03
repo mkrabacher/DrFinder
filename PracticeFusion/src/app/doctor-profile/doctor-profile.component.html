@@ -1,5 +1,6 @@
+    
 <div>
-    <h2>{{doctor.firstName}} {{doctor.lastName}}</h2>
+    <h1>{{doctor.firstName}} {{doctor.lastName}}</h1>
     <img src="{{doctor.img_url}}" alt="{{doctor.firstName}} {{doctor.lastName}}">
     <table>
         <tr>
@@ -15,4 +16,11 @@
             <td>Review</td>
         </tr>
     </table>
+</div>
+
+<div>
+    <h3>Similar Doctors</h3>
+    <div *ngFor="let doctor of similarDoctors">
+        <strong><a [routerLink]='["/profile", doctor.id]'>{{doctor.firstName}} {{doctor.lastName}}</a></strong>
+    </div>
 </div>

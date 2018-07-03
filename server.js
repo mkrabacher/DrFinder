@@ -98,10 +98,22 @@ app.use(express.static(__dirname + "/PracticeFusion/dist/PracticeFusion"));
             speciality: 'vaccination',
             review: 7,
         },
+        {
+            id: 8,
+            firstName: 'John',
+            lastName: 'Doolittle',
+            img_url: 'https://image.tmdb.org/t/p/w533_and_h300_bestv2/g97xTt18p0WWnj6wxLGC0vBKFwQ.jpg',
+            city: 'Washington',
+            state: 'District of Columbia',
+            country: 'United States of America',
+            speciality: 'physician',
+            review: 3,
+        },
     ]
 //end doctors
 
 //routes
+    //return all stored doctors in JSON
     app.get('/getAllDoctors', function (req, res) {
         console.log('getting doctors in server')
         if(doctors.length <= 0){
@@ -109,6 +121,17 @@ app.use(express.static(__dirname + "/PracticeFusion/dist/PracticeFusion"));
         }else{
             res.json({message:'The Doctors', doctors: doctors})
         }
+    })
+
+    //return specific doctor in JSON
+    app.post('/getDoctor', function (req, res) {
+        for (let i = 0; i < doctors.length; i++) {
+            if (req.body.id == doctors[i].id) {
+                res.json({message: 'found doctor', doctor: doctors[i]})
+                return
+            }
+        }
+        res.json({message: "couldn't find the doctor", doctor: null})
     })
 // end routes
 

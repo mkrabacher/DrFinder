@@ -10,10 +10,13 @@ export class HttpService {
     constructor(
         private _http: HttpClient,
         private _router: Router
-    ) {}
+    ) { }
 
     getDoctorsInService() {
-        console.log('getting all items in service');
         return this._http.get('/getAllDoctors');
+    }
+
+    getDoctorInService(id) {
+        return this._http.post('/getDoctor', id);
     }
 }
